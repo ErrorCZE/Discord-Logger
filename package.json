@@ -1,0 +1,20 @@
+{
+  "name": "Discord-Logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^2.2.0",
+    "ascii-table": "^0.0.9",
+    "chalk": "4.1.0",
+    "discord-api-types": "^0.37.71",
+    "discord.js": "^14.14.1",
+    "fs": "0.0.1-security"
+  }
+}
