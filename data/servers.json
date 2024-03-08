@@ -1,5 +1,9 @@
 {
 	"572778598713524236": {
-		"messageUpdate": "1210262077072211988"
+		"messageUpdate": "1210262077072211988",
+		"messageDelete": "1210262077072211988",
+		"voiceChannelJoin": "1210262077072211988",
+		"voiceChannelLeave": "1210262077072211988",
+		"voiceChannelSwitch": "1210262077072211988"
 	}
 }

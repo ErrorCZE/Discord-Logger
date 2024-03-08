@@ -20,6 +20,19 @@ async function sendInfo(server, actionType, data) {
 			.setTimestamp()
 
 		channel.send({ embeds: [embed] })
+	} else if (actionType === "messageDelete") {
+		const embed = new EmbedBuilder()
+			.setColor("#009dff")
+			.setTitle("**Message Deleted**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Message deleted in <#${data.channelId}>`)
+			.addFields([
+				{ name: 'Content', value: data.content },
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nChannel = ${data.channelId}\nMessage = ${data.messageId}` + "```" }
+			])
+			.setTimestamp()
+
+		channel.send({ embeds: [embed] })
 	}
 
 }
