@@ -4,29 +4,72 @@ const client = require('..');
 
 
 client.on('voiceStateUpdate', async (oldUser, newUser) => {
-	console.log("================================= new ============================")
-	console.log(JSON.stringify(newUser))
-	console.log("================================= old ============================")
-	console.log(JSON.stringify(oldUser))
-	return;
+	let memberId = oldUser.id;
+	let member = oldUser.guild.members.cache.get(memberId);
+
+	let server = oldUser.guild.id;
+
+	//Channel join (not switching channels)
+	if ((!oldUser.channel) && (newUser.channel)) {
+
+		let actionType = "voiceChannelJoin";
+
+		//Add data
+		let data = {
+			serverId: newUser.guild.id,
+			userId: newUser.id,
+
+			channel: newUser.channel,
+			channelId: newUser.channel.id,
+
+			user: { ...member.user },
+		};
+
+		sendInfo(server, actionType, data)
+	}
+
+	//Channel leave (not switching channels)
+	if ((oldUser.channel) && (!newUser.channel)) {
+
+		let actionType = "voiceChannelLeave";
+
+		//Add data
+		let data = {
+			serverId: oldUser.guild.id,
+			userId: oldUser.id,
+
+			channel: oldUser.channel,
+			channelId: oldUser.channel.id,
+
+			user: { ...member.user },
+		};
+
+		sendInfo(server, actionType, data)
+	}
+
+	//Channel switch
+	if ((oldUser.channel) && (newUser.channel) && (oldUser.channel !== newUser.channel)) {
+
+		let actionType = "voiceChannelSwitch";
+
+		//Add data
+		let data = {
+			serverId: newUser.guild.id,
+			userId: newUser.id,
+
+			oldChannel: oldUser.channel,
+			newChannel: newUser.channel,
+			oldChannelId: oldUser.channel.id,
+			newChannelId: newUser.channel.id,
+
+			user: { ...member.user },
+		};
+
+		sendInfo(server, actionType, data)
+	}
 
 
-	let memberId = newMessage.author.id;
-	let member = newMessage.guild.members.cache.get(memberId);
+	// ...
+	//Dodělat: Start streamu, Vypnutí streamu, Server mute, Server unmute, Server deaf, Server undeaf
 
-	let server = channel.guild.id;
-	let actionType = "voiceStateUpdate";
-
-	//Add data
-	let data = {
-		serverId: channel.guild.id,
-		userId: member.user.id,
-
-		channelId: channel.id,
-		channelName: channel.name,
-
-		user: { ...member.user },
-	};
-
-	sendInfo(server, actionType, data)
 });
