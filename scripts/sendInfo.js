@@ -69,7 +69,31 @@ async function sendInfo(server, actionType, data) {
 			.setTimestamp()
 
 		channel.send({ embeds: [embed] })
-	}
+	} else if (actionType === 'voiceChannelStreamStart') {
+		const embed = new EmbedBuilder()
+			.setColor("#009dff")
+			.setTitle("**User Stream Start**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Stream is in <#${data.channelId}>`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nChannel = ${data.channelId}` + "```" }
+			])
+			.setTimestamp()
+
+		channel.send({ embeds: [embed] })
+	} else if (actionType === 'voiceChannelStreamStop') {
+		const embed = new EmbedBuilder()
+			.setColor("#009dff")
+			.setTitle("**User Stream Stop**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Stream was in <#${data.channelId}>`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nChannel = ${data.channelId}` + "```" }
+			])
+			.setTimestamp()
+
+		channel.send({ embeds: [embed] })
+	} 
 
 }
 

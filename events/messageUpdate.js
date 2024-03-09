@@ -17,9 +17,9 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 	//Add data
 	let data = {
 		serverId: newMessage.guild.id,
-		channelId: newMessage.channel.id,
 		userId: member.user.id,
 
+		channelId: newMessage.channel.id,
 		messageId: newMessage.id,
 		oldContent: oldMessage.content,
 		newContent: newMessage.content,

@@ -19,7 +19,6 @@ client.on('voiceStateUpdate', async (oldUser, newUser) => {
 			serverId: newUser.guild.id,
 			userId: newUser.id,
 
-			channel: newUser.channel,
 			channelId: newUser.channel.id,
 
 			user: { ...member.user },
@@ -38,7 +37,6 @@ client.on('voiceStateUpdate', async (oldUser, newUser) => {
 			serverId: oldUser.guild.id,
 			userId: oldUser.id,
 
-			channel: oldUser.channel,
 			channelId: oldUser.channel.id,
 
 			user: { ...member.user },
@@ -57,8 +55,6 @@ client.on('voiceStateUpdate', async (oldUser, newUser) => {
 			serverId: newUser.guild.id,
 			userId: newUser.id,
 
-			oldChannel: oldUser.channel,
-			newChannel: newUser.channel,
 			oldChannelId: oldUser.channel.id,
 			newChannelId: newUser.channel.id,
 
@@ -68,8 +64,21 @@ client.on('voiceStateUpdate', async (oldUser, newUser) => {
 		sendInfo(server, actionType, data)
 	}
 
+	//Stream Start & Stop
+	if ((oldUser.channel) && (newUser.channel) && (oldUser.channel === newUser.channel) && (oldUser.streaming !== newUser.streaming)) {
 
-	// ...
-	//Dodělat: Start streamu, Vypnutí streamu, Server mute, Server unmute, Server deaf, Server undeaf
+		let actionType = (oldUser.streaming && !newUser.streaming) ? "voiceChannelStreamStop" : (newUser.streaming && !oldUser.streaming) ? "voiceChannelStreamStart" : "voiceChannelStreamStop";
 
+		//Add data
+		let data = {
+			serverId: newUser.guild.id,
+			userId: newUser.id,
+
+			channelId: newUser.channel.id,
+
+			user: { ...member.user },
+		};
+
+		sendInfo(server, actionType, data)
+	}
 });

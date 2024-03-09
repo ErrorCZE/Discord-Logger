@@ -22,9 +22,9 @@ client.on('messageDelete', async (message) => {
 	//Add data
 	let data = {
 		serverId: message.guild.id,
-		channelId: message.channel.id,
 		userId: member.user.id,
 
+		channelId: message.channel.id,
 		messageId: message.id,
 		content: message.content,
 

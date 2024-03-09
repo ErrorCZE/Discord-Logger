@@ -4,6 +4,8 @@
 		"messageDelete": "1210262077072211988",
 		"voiceChannelJoin": "1210262077072211988",
 		"voiceChannelLeave": "1210262077072211988",
-		"voiceChannelSwitch": "1210262077072211988"
+		"voiceChannelSwitch": "1210262077072211988",
+		"voiceChannelStreamStart": "1210262077072211988",
+		"voiceChannelStreamStop": "1210262077072211988"
 	}
 }
