@@ -77,6 +77,7 @@ client.on('voiceStateUpdate', async (oldUser, newUser) => {
 			channelId: newUser.channel.id,
 
 			user: { ...member.user },
+			timestamp: Math.floor(Date.now() / 1000),
 		};
 
 		sendInfo(server, actionType, data)

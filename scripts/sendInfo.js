@@ -4,7 +4,9 @@ const { EmbedBuilder, ApplicationCommandType } = require('discord.js');
 
 async function sendInfo(server, actionType, data) {
 	let channel = client.channels.cache.get(await getSettings(server, actionType));
-	if (!channel) return console.log("neni channel");
+	if (!channel) {
+		console.log(`No log channel for ${actionType} in server ${server}`);
+	}
 
 	if (actionType === "messageUpdate") {
 		const embed = new EmbedBuilder()
@@ -89,6 +91,30 @@ async function sendInfo(server, actionType, data) {
 			.setDescription(`Stream was in <#${data.channelId}>`)
 			.addFields([
 				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nChannel = ${data.channelId}` + "```" }
+			])
+			.setTimestamp()
+
+		channel.send({ embeds: [embed] })
+	}  else if (actionType === 'channelCreate') {
+		const embed = new EmbedBuilder()
+			.setColor("#009dff")
+			.setTitle("**Channel Create**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Created channel <#${data.channelId}> (${data.channelName}) in the category <#${data.categoryId}>`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nChannel = ${data.channelId}\nCategory = ${data.categoryId}` + "```" }
+			])
+			.setTimestamp()
+
+		channel.send({ embeds: [embed] })
+	}  else if (actionType === 'channelDelete') {
+		const embed = new EmbedBuilder()
+			.setColor("#009dff")
+			.setTitle("**Channel Delete**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Deleted channel <#${data.channelId}> (${data.channelName}) in the category <#${data.categoryId}>`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nChannel = ${data.channelId}\nCategory = ${data.categoryId}` + "```" }
 			])
 			.setTimestamp()
 

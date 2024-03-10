@@ -25,6 +25,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 		newContent: newMessage.content,
 
 		user: { ...member.user },
+		timestamp: Math.floor(Date.now() / 1000),
 	};
 
 	sendInfo(server, actionType, data)

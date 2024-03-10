@@ -3,16 +3,16 @@ const { sendInfo } = require('../scripts/sendInfo'); //sendInfo(server, actionTy
 const client = require('..');
 
 
-client.on('channelCreate', async (channel) => {
+client.on('channelDelete', async (channel) => {
 
-	const AuditLogFetch = await channel.guild.fetchAuditLogs({limit: 1, type: 10});
+	const AuditLogFetch = await channel.guild.fetchAuditLogs({limit: 1, type: 12});
 	const channelInfo = AuditLogFetch.entries.first();
 
 	//Get member & server id, actionType info
 	let member = channelInfo.executor;
 
 	let server = channel.guildId;
-	let actionType = "channelCreate";
+	let actionType = "channelDelete";
 
 	//Add data
 	let data = {
