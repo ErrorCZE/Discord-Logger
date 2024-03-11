@@ -224,21 +224,48 @@ async function sendInfo(server, actionType, data) {
 			.setThumbnail(data.emojiImg)
 			.setTimestamp()
 
-			if(data.emojiNameOld !== data.emojiNameNew) {
-				embed.addFields([
-					{ name: 'Name', value: `**Old:** ${data.emojiNameOld}\n**New:** ${data.emojiNameNew}` }
-				])
-			}
-			if(data.emojiIdentifierOld !== data.emojiIndentifierNew) {
-				embed.addFields([
-					{ name: 'Identifier', value: `**Old:** ${data.emojiIdentifierOld}\n**New:** ${data.emojiIdentifierNew}` }
-				])
-			}
-
+		if (data.emojiNameOld !== data.emojiNameNew) {
 			embed.addFields([
-				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nEmoji = ${data.emojiId}` + "```" }
+				{ name: 'Name', value: `**Old:** ${data.emojiNameOld}\n**New:** ${data.emojiNameNew}` }
 			])
-			
+		}
+		if (data.emojiIdentifierOld !== data.emojiIndentifierNew) {
+			embed.addFields([
+				{ name: 'Identifier', value: `**Old:** ${data.emojiIdentifierOld}\n**New:** ${data.emojiIdentifierNew}` }
+			])
+		}
+
+		embed.addFields([
+			{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}\nEmoji = ${data.emojiId}` + "```" }
+		])
+
+
+		channel.send({ embeds: [embed] })
+	} else if (actionType === 'guildBanAdd') {
+		const embed = new EmbedBuilder()
+			.setColor(COLOR.red)
+			.setTitle("**User Banned**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Banned user <@${data.bannedUser.id}> (${data.bannedUser.id})`)
+			.setThumbnail(`https://cdn.discordapp.com/avatars/${data.bannedUser.id}/${data.bannedUser.avatar}.webp`)
+			.addFields([
+				{ name: 'Reason', value: data.reason },
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.bannedUser.id}\nModerator = ${data.user.id}` + "```" }
+			])
+			.setTimestamp()
+
+		channel.send({ embeds: [embed] })
+	} else if (actionType === 'guildBanRemove') {
+		const embed = new EmbedBuilder()
+			.setColor(COLOR.green)
+			.setTitle("**User Unbanned**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Unbanned user <@${data.bannedUser.id}> (${data.bannedUser.id})`)
+			.setThumbnail(`https://cdn.discordapp.com/avatars/${data.bannedUser.id}/${data.bannedUser.avatar}.webp`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.bannedUser.id}\nModerator = ${data.user.id}` + "```" }
+			])
+			.setTimestamp()
 
 		channel.send({ embeds: [embed] })
 	}

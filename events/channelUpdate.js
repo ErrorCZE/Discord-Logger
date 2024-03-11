@@ -1,13 +1,6 @@
-const { EmbedBuilder, Collection, PermissionsBitField } = require('discord.js')
+/* const { EmbedBuilder, Collection, PermissionsBitField } = require('discord.js')
 const { sendInfo } = require('../scripts/sendInfo'); //sendInfo(server, actionType, data)
 const client = require('..');
-
-/*
-
-TODO:
-	- Permission logging
-
-*/
 
 client.on('channelUpdate', async (oldChannel, newChannel) => {
 	if (oldChannel === newChannel) return;
@@ -66,4 +59,4 @@ client.on('channelUpdate', async (oldChannel, newChannel) => {
 	};
 
 	sendInfo(server, actionType, data)
-});
+}); */
