@@ -3,12 +3,7 @@ const { sendInfo } = require('../scripts/sendInfo'); //sendInfo(server, actionTy
 const client = require('..');
 
 
-client.on('messageDelete', async (message) => {
-	if (message.partial) {
-		let msg = await message.fetch()
-		console.log(msg.content)
-	}
-	
+client.on('messageDelete', async (message) => {	
 	if (message.content === null) return;
 	if (message.author.bot) return;
 

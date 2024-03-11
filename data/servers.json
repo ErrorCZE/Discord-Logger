@@ -8,6 +8,10 @@
 		"voiceChannelStreamStart": "1210262077072211988",
 		"voiceChannelStreamStop": "1210262077072211988",
 		"channelCreate": "1210262077072211988",
-		"channelDelete": "1210262077072211988"
+		"channelDelete": "1210262077072211988",
+		"channelUpdate": "1210262077072211988",
+		"emojiCreate": "1210262077072211988",
+		"emojiDelete": "1210262077072211988",
+		"emojiUpdate": "1210262077072211988"
 	}
 }
