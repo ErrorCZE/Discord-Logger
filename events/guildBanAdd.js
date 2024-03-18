@@ -4,6 +4,8 @@ const client = require('..');
 
 
 client.on('guildBanAdd', async (ban) => {
+	await new Promise(resolve => setTimeout(resolve, 10000));
+	
 	const AuditLogFetch = await ban.guild.fetchAuditLogs({limit: 1, type: 22});
 	const banInfo = AuditLogFetch.entries.first();
 

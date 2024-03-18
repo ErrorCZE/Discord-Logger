@@ -18,9 +18,6 @@ async function sendInfo(server, actionType, data) {
 		console.log(`No log channel for ${actionType} in server ${server}`);
 	}
 
-
-	if (data.user.id !== "598142542516584479") return; //POTOM SMAZAT
-
 	if (actionType === "messageUpdate") {
 		const embed = new EmbedBuilder()
 			.setColor(COLOR.yellow)
@@ -268,6 +265,43 @@ async function sendInfo(server, actionType, data) {
 			.setTimestamp()
 
 		channel.send({ embeds: [embed] })
+	} else if (actionType === 'guildKick') {
+		const embed = new EmbedBuilder()
+			.setColor(COLOR.red)
+			.setTitle("**User Kicked**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`Kicked user <@${data.kickedUser.id}> (${data.kickedUser.id})`)
+			.setThumbnail(`https://cdn.discordapp.com/avatars/${data.kickedUser.id}/${data.kickedUser.avatar}.webp`)
+			.addFields([
+				{ name: 'Reason', value: data.reason },
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.kickedUser.id}\nModerator = ${data.user.id}` + "```" }
+			])
+			.setTimestamp()
+		channel.send({ embeds: [embed] }).catch(error => {console.log(error)})
+	} else if (actionType === 'guildLeave') {
+		const embed = new EmbedBuilder()
+			.setColor(COLOR.red)
+			.setTitle("**User Leave**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`User <@${data.user.id}> (${data.user.id})`)
+			.setThumbnail(`https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}` + "```" }
+			])
+			.setTimestamp()
+		channel.send({ embeds: [embed] }).catch(error => {console.log(error)})
+	} else if (actionType === 'guildJoin') {
+		const embed = new EmbedBuilder()
+			.setColor(COLOR.green)
+			.setTitle("**User Join**")
+			.setAuthor({ name: `${data.user.globalName}`, iconURL: `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp` })
+			.setDescription(`User <@${data.user.id}> (${data.user.id})`)
+			.setThumbnail(`https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.webp`)
+			.addFields([
+				{ name: 'IDs', value: "```ini\n" + `User = ${data.user.id}` + "```" }
+			])
+			.setTimestamp()
+		channel.send({ embeds: [embed] }).catch(error => {console.log(error)})
 	}
 
 }

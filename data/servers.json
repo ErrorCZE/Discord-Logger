@@ -1,19 +1,22 @@
 {
 	"572778598713524236": {
-		"messageUpdate": "1210262077072211988",
-		"messageDelete": "1210262077072211988",
-		"voiceChannelJoin": "1210262077072211988",
-		"voiceChannelLeave": "1210262077072211988",
-		"voiceChannelSwitch": "1210262077072211988",
-		"voiceChannelStreamStart": "1210262077072211988",
-		"voiceChannelStreamStop": "1210262077072211988",
-		"channelCreate": "1210262077072211988",
-		"channelDelete": "1210262077072211988",
-		"channelUpdate": "1210262077072211988",
-		"emojiCreate": "1210262077072211988",
-		"emojiDelete": "1210262077072211988",
-		"emojiUpdate": "1210262077072211988",
-		"guildBanAdd": "1210262077072211988",
-		"guildBanRemove": "1210262077072211988"
+		"messageUpdate": "1219384231931674624",
+		"messageDelete": "1219384231931674624",
+		"voiceChannelJoin": "1219384231931674624",
+		"voiceChannelLeave": "1219384231931674624",
+		"voiceChannelSwitch": "1219384231931674624",
+		"voiceChannelStreamStart": "1219384231931674624",
+		"voiceChannelStreamStop": "1219384231931674624",
+		"channelCreate": "1219384231931674624",
+		"channelDelete": "1219384231931674624",
+		"channelUpdate": "1219384231931674624",
+		"emojiCreate": "1219384231931674624",
+		"emojiDelete": "1219384231931674624",
+		"emojiUpdate": "1219384231931674624",
+		"guildBanAdd": "1219384231931674624",
+		"guildBanRemove": "1219384231931674624",
+		"guildKick": "1219384231931674624",
+		"guildLeave": "1219384231931674624",
+		"guildJoin": "1219384231931674624"
 	}
 }
