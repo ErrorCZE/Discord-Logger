@@ -1,0 +1,22 @@
+{
+	"server_id": {
+		"messageUpdate": "channel_id",
+		"messageDelete": "channel_id",
+		"voiceChannelJoin": "channel_id",
+		"voiceChannelLeave": "channel_id",
+		"voiceChannelSwitch": "channel_id",
+		"voiceChannelStreamStart": "channel_id",
+		"voiceChannelStreamStop": "channel_id",
+		"channelCreate": "channel_id",
+		"channelDelete": "channel_id",
+		"channelUpdate": "channel_id",
+		"emojiCreate": "channel_id",
+		"emojiDelete": "channel_id",
+		"emojiUpdate": "channel_id",
+		"guildBanAdd": "channel_id",
+		"guildBanRemove": "channel_id",
+		"guildKick": "channel_id",
+		"guildLeave": "channel_id",
+		"guildJoin": "channel_id"
+	}
+}
